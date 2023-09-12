@@ -13,5 +13,5 @@ Gait analysis based on optical motion capture, including the option for forcepla
 
 
 **Example data:**
-- *exampleGRAIL.c3d*: example data of walking on the GRIAL (treadmill including forceplates)
+- *exampleGRAIL.c3d*: example data of walking on the GRAIL (treadmill including forceplates)
 - *exampleOvergorund.c3d*: example data of walking overground
