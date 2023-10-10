@@ -617,7 +617,7 @@ def propulsion(gaitevents, spatiotemporals, analogdata, **kwargs):
             start = gaitevents['Index numbers initial contact left'][i] # start of stance phase
             stop = gaitevents['Index numbers terminal contact left'][ gaitevents['Index numbers terminal contact left'] > gaitevents['Index numbers initial contact left'][i] ][0] # end of stance phase
             # Identify crossstep: force in Z direction should cross 90% of the bodyweight, force in Z direction of the contralateral side should reach almost 0 at some point during the stance, force in Z direction should at some point before heel-strike and after toe-off reach almost zero
-            if np.min(analogdata['Force Z left filtered'][start:stop]) < th_crosssteps and np.any(analogdata['Force Z left filtered'][start:stop] > -1) and analogdata['Force Z left filtered'][start-10] > -10 and analogdata['Force Z left filtered'][stop+10] > -10: # If not cross step: continue
+            if np.min(analogdata['Force Z left filtered'][start:stop]) < th_crosssteps and np.any(analogdata['Force Z right filtered'][start:stop] > -1) and analogdata['Force Z left filtered'][start-10] > -10 and analogdata['Force Z left filtered'][stop+10] > -10: # If not cross step: continue
                 # Stance phase with correction for cross steps
                 spatiotemporals['Stance left index numbers'] = np.append(spatiotemporals['Stance left index numbers'], np.arange(start, stop, step=1)) # save the index numbers of the stance phase
                 
@@ -744,7 +744,7 @@ def propulsion(gaitevents, spatiotemporals, analogdata, **kwargs):
             start = gaitevents['Index numbers initial contact right'][i] # start of stance phase
             stop = gaitevents['Index numbers terminal contact right'][ gaitevents['Index numbers terminal contact right'] > gaitevents['Index numbers initial contact right'][i] ][0] # end of stance phase
             # Identify crossstep: force in Z direction should cross 90% of the bodyweight, force in Z direction of the contralateral side should reach almost 0 at some point during the stance, force in Z direction should at some point before heel-strike and after toe-off reach almost zero
-            if np.min(analogdata['Force Z right filtered'][start:stop]) < th_crosssteps and np.any(analogdata['Force Z right filtered'][start:stop] > -1) and analogdata['Force Z right filtered'][start-10] > -10 and analogdata['Force Z right filtered'][stop+10] > -10: # If not cross step: continue
+            if np.min(analogdata['Force Z right filtered'][start:stop]) < th_crosssteps and np.any(analogdata['Force Z left filtered'][start:stop] > -1) and analogdata['Force Z right filtered'][start-10] > -10 and analogdata['Force Z right filtered'][stop+10] > -10: # If not cross step: continue
                 # Stance phase with correction for cross steps
                 spatiotemporals['Stance right index numbers'] = np.append(spatiotemporals['Stance right index numbers'], np.arange(start, stop, step=1)) # save the index numbers of the stance phase
                 
@@ -1054,3 +1054,4 @@ def propulsion(gaitevents, spatiotemporals, analogdata, **kwargs):
     
     
     return gaitevents, spatiotemporals, analogdata
+
